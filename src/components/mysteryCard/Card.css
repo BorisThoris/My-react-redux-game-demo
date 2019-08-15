@@ -1,0 +1,15 @@
+.card {
+  width: 20vh;
+  height: 20vh;
+  transition: 1s;
+  background-color: white;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: black;
+  text-align: center;
+  margin: 5vh;
+}
+
+.card:hover {
+  transform: scale(1.5);
+}

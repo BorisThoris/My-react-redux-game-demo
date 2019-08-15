@@ -1,0 +1,97 @@
+#gameBoard {
+  /* background-color: red; */
+  /* border-style: solid;
+  border-width: 2px;
+  border-color: black; */
+
+  width: 100vw;
+  height: fit-content;
+  min-height: 100vh;
+  margin: auto;
+  background-image: url("https://media.istockphoto.com/photos/green-poker-table-felt-background-picture-id467583755?k=6&m=467583755&s=612x612&w=0&h=yYdwoNN2UZkMCxAAEf5PyltMphePlfEAzw6oEeYMpEU=");
+  /* https://cdn11.bigcommerce.com/s-c1tzcg0txe/images/stencil/500x659/products/8377/9234/Ozone_Green__40742.1523637100.jpg?c=2 */
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cardsDiv {
+  /* background-color: brown; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  /* background-color: Red; */
+  justify-items: center;
+  align-items: center;
+}
+
+.flip-card {
+  /* background-color: transparent; */
+  width: 200px;
+  height: 200px;
+  perspective: 25vh;
+  /* background-color: gray; */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+
+.flip-card.active .flip-card-inner {
+  transform: rotateY(180deg);
+
+  /* opacity: 0.7; */
+  /* transition: transform 0.6s; */
+  /* opacity: 0.97; */
+  /* transform: scale(0.7); */
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: red; */
+  backface-visibility: hidden;
+}
+
+/* opacity: 0.4;
+transition: 1s;
+transform: scale(0.9); */
+
+.flip-card-front {
+  /* background-color: #bbb; */
+  color: black;
+}
+
+.flip-card-back {
+  /* background-color: #2980b9; */
+  color: white;
+
+  transition: 2s;
+
+  transform: rotateY(180deg);
+}
+
+.flip-card-number {
+  position: absolute;
+  right: 87px;
+  z-index: 2;
+  top: 9px;
+  /* color: black; */
+  font-size: 40px;
+  color: honeydew;
+  /* -webkit-text-fill-color: white; */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
