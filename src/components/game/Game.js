@@ -62,7 +62,8 @@ class Game extends Component {
       cardStyles,
       activeCard,
       cardTwo,
-      disabled
+      disabled,
+      lastCard
     } = this.props;
 
     let cardArray = [];
@@ -70,15 +71,14 @@ class Game extends Component {
 
     let bool = false;
     let cardDisabled = false;
+
     for (let i = 0; i < cards.length; i++) {
-      if (i === activeCard || i === cardTwo) {
+      if (i === activeCard || i === lastCard) {
         console.log(i);
         bool = true;
       }
 
       if (disabled.includes(cards[i])) {
-        // console.log(cards);
-        // console.log(disabled[i]);
         bool = true;
         cardDisabled = true;
       }
@@ -119,7 +119,8 @@ const mapStateToProps = state => {
     cardStyles: state.cardsHtml,
     activeCard: state.tempCurrentCard,
     cardTwo: state.cardTwo,
-    disabled: state.disabled
+    disabled: state.disabled,
+    lastCard: state.lastCard
   };
 };
 

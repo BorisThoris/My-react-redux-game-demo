@@ -7,7 +7,7 @@ const initialState = {
   cards: [],
   cardsPressed: 0,
   tempCurrentCard: null,
-  //cardTwo: null,
+  lastCard: null,
   matched: false,
   cardsHtml: [],
   htmlSaved: false,
@@ -25,6 +25,7 @@ const pageReducer = (state = initialState, action) => {
   let matched = state.matched;
   let htmlSaved = state.htmlSaved;
   let tempintro = state.intro;
+  let tempLastCard = state.lastCard;
 
   let tempArr = [];
   for (let i = 0; i < state.cards.length; i++) {
@@ -60,6 +61,12 @@ const pageReducer = (state = initialState, action) => {
       let cards = state.cards;
       let disabled = state.disabled;
 
+      const matchBool =
+        cards[action.card] &&
+        cards[tempCurrentCard] &&
+        cards[action.card].value === cards[tempCurrentCard].value &&
+        cards[action.card] !== cards[tempCurrentCard];
+
       if (newCardsHtml[action.card]) {
         newCardsHtml[action.card].style = { backgroundColor: "red" };
       }
@@ -69,6 +76,20 @@ const pageReducer = (state = initialState, action) => {
       if (cardsPressed < 2) {
         cardsPressed++;
         currentCard = action.card;
+        tempLastCard = state.tempCurrentCard;
+
+        if (matchBool) {
+          matched = true;
+
+          disabled.push(cards[tempCurrentCard], cards[action.card]);
+
+          currentCard = null;
+
+          if (cards.length === disabled.length) {
+            window.alert("SuCcEsS");
+          }
+          // break;
+        }
 
         if (matched === true) {
           newCardsHtml[action.card].style = { opacity: "0.3" };
@@ -81,27 +102,24 @@ const pageReducer = (state = initialState, action) => {
         }
       }
 
-      if (
-        cards[action.card] &&
-        cards[tempCurrentCard] &&
-        cards[action.card].value === cards[tempCurrentCard].value &&
-        cards[action.card] !== cards[tempCurrentCard]
-      ) {
-        matched = true;
-
-        disabled.push(cards[tempCurrentCard], cards[action.card]);
-
-        currentCard = null;
-
-        if (cards.length === disabled.length) {
-          window.alert("SuCcEsS");
-        }
-        break;
-      }
-
       if (cardsPressed === 2) {
-        cardsPressed = 1;
-        currentCard = action.card;
+        if (matchBool) {
+          matched = true;
+
+          disabled.push(cards[tempCurrentCard], cards[action.card]);
+
+          currentCard = null;
+
+          if (cards.length === disabled.length) {
+            window.alert("SuCcEsS");
+          }
+          // break;
+        } else {
+          cardsPressed = 0;
+          currentCard = action.card;
+          tempLastCard = null;
+          break;
+        }
       }
 
       break;
@@ -118,7 +136,7 @@ const pageReducer = (state = initialState, action) => {
     cards: newCards,
     cardsPressed: cardsPressed,
     tempCurrentCard: currentCard,
-    // cardTwo: tempCurrentCard,
+    lastCard: tempLastCard,
     matched: matched,
     htmlSaved: htmlSaved,
     cardsHtml: newCardsHtml,
