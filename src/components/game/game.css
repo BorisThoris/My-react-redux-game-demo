@@ -43,14 +43,25 @@
   flex-direction: column;
   align-items: center;
 
-  border-style: solid;
+  /* border-style: inset; */
+  /* border-width: 5px; */
+  /* border-top-left-radius: 25%; */
+  /* border-top-right-radius: 20%; */
+  /* border-bottom-right-radius: 25%; */
+
+  color: white;
+
   border-radius: 4%;
-  background-color: rgba(245, 245, 245, 0.465);
+  background-color: rgba(245, 245, 245, 0.486);
+  background-image: url(https://i.ytimg.com/vi/DGPsaTgSzYQ/maxresdefault.jpg);
+  background-position: center;
+  background-size: 600px;
+
   z-index: 2;
 
-  -webkit-box-shadow: 37px 59px 45px 14px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 37px 59px 45px 14px rgba(0, 0, 0, 0.75);
-  box-shadow: 37px 59px 45px 14px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 46px 25px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 0px 0px 46px 25px rgba(0, 0, 0, 0.74);
+  box-shadow: 0px 0px 46px 25px rgba(0, 0, 0, 0.74);
 }
 
 #informationDiv {
@@ -74,10 +85,71 @@
   box-shadow: 37px 27px 12px -6px rgba(0, 0, 0, 0.75);
 }
 
+#replayButton {
+  background-color: rgba(245, 245, 245, 0.48);
+
+  /* background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/66ecacd5-52ab-49b7-a2bb-d1238fe48a82/d9k4l9t-ef962b4e-c75e-46d7-b548-7555d292c854.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY2ZWNhY2Q1LTUyYWItNDliNy1hMmJiLWQxMjM4ZmU0OGE4MlwvZDlrNGw5dC1lZjk2MmI0ZS1jNzVlLTQ2ZDctYjU0OC03NTU1ZDI5MmM4NTQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9IuNvSeHHz92JWfkto_vonBkTvcUz3EtphrlZWAbi7k); */
+  /* background-position-x: -150px;
+  background-position-y: -200px; */
+
+  border-top-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+
+  /* border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%; */
+
+  border-style: outset;
+  border-color: wheat;
+  border-width: 5px;
+
+  font-size: 240px;
+  text-align-last: center;
+
+  height: 150px;
+  width: 160px;
+  position: fixed;
+
+  animation: buttonAnimation 4s infinite;
+
+  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 5px;
+  /* -webkit-text-stroke-color: red; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: +480px;
+  z-index: 1;
+
+  /* -webkit-box-shadow: 41px 44px 10px -9px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 41px 44px 10px -9px rgba(0, 0, 0, 0.74);
+  box-shadow: 41px 44px 10px -9px rgba(0, 0, 0, 0.74); */
+}
+
+#arrow {
+  top: -25px;
+  position: relative;
+}
+
 #scoreDiv {
   font-size: 100%;
 }
 
 #livesDiv {
   font-size: 100%;
+}
+
+@keyframes buttonAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    /* background-color: rgba(245, 237, 169, 0.842); */
+    /* color: whitesmoke; */
+  }
+  100% {
+    transform: scale(1);
+  }
 }

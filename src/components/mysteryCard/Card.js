@@ -54,8 +54,8 @@ class Card extends Component {
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img
-              height={"100%"}
-              width={"100%"}
+              height={"100%"} //90
+              width={"100%"} //95
               src={`${cardBack}`}
               alt={"lol"}
             />

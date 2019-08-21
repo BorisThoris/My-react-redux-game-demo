@@ -138,10 +138,23 @@ class Game extends Component {
       </div>
     );
 
+    let replayButton = (
+      <div
+        id="replayButton"
+        style={{
+          opacity: `${gameIsOver ? 100 : 0}`,
+          zIndex: `${gameIsOver ? 2 : -1000}`
+        }}
+      >
+        <div id="arrow">></div>
+      </div>
+    );
+
     return (
       <div id="appDiv">
         {informationDiv}
         {gameOverText}
+        {replayButton}
 
         <div id="gameBoard" style={{ backgroundImage: `url(${bgnImage})` }}>
           <div id="cardsDiv">{cardArray ? cardArray : null}</div>
