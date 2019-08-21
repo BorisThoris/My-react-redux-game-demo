@@ -1,18 +1,24 @@
 import * as actionTypes from "./actionTypes";
 
 const initialState = {
+  cardsPressed: 0,
+  score: 0,
+  lives: null,
+
   pages: {},
+  cardsHtml: [],
+  cards: [],
+  disabled: [],
+
   currentPage: null,
   active: null,
-  cards: [],
-  cardsPressed: 0,
   tempCurrentCard: null,
   lastCard: null,
-  matched: false,
-  cardsHtml: [],
+
   htmlSaved: false,
-  disabled: [],
-  intro: false
+  matched: false,
+  intro: false,
+  gameOver: false
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -22,10 +28,14 @@ const pageReducer = (state = initialState, action) => {
   let cardsPressed = state.cardsPressed;
   let currentCard;
   //let tempCurrentCard = state.cardTwo;
+
   let matched = state.matched;
   let htmlSaved = state.htmlSaved;
   let tempintro = state.intro;
   let tempLastCard = state.lastCard;
+  let tempLives = state.lives;
+  let tempScore = state.score;
+  let tempGameOver = state.gameOver;
 
   let tempArr = [];
   for (let i = 0; i < state.cards.length; i++) {
@@ -41,6 +51,12 @@ const pageReducer = (state = initialState, action) => {
     case actionTypes.SET_GAME_INTRO:
       // let bool = action.bool;
       tempintro = action.bool;
+
+      break;
+
+    case actionTypes.SET_GAME_LIVES:
+      // let bool = action.bool;
+      tempLives = action.lives;
 
       break;
 
@@ -80,6 +96,8 @@ const pageReducer = (state = initialState, action) => {
 
         if (matchBool) {
           matched = true;
+          tempScore += 50;
+          tempLives++;
 
           disabled.push(cards[tempCurrentCard], cards[action.card]);
 
@@ -105,6 +123,8 @@ const pageReducer = (state = initialState, action) => {
       if (cardsPressed === 2) {
         if (matchBool) {
           matched = true;
+          tempScore += 50;
+          tempLives++;
 
           disabled.push(cards[tempCurrentCard], cards[action.card]);
 
@@ -117,7 +137,17 @@ const pageReducer = (state = initialState, action) => {
         } else {
           cardsPressed = 0;
           currentCard = action.card;
+          console.log(currentCard);
+          console.log(tempLastCard);
+          if (currentCard !== tempLastCard) {
+            tempLives--;
+          }
           tempLastCard = null;
+
+          if (tempLives === 0) {
+            tempGameOver = true;
+            // window.alert("Game Over, Sorry Bro :/");
+          }
           break;
         }
       }
@@ -140,7 +170,10 @@ const pageReducer = (state = initialState, action) => {
     matched: matched,
     htmlSaved: htmlSaved,
     cardsHtml: newCardsHtml,
-    intro: tempintro
+    intro: tempintro,
+    lives: tempLives,
+    score: tempScore,
+    gameOver: tempGameOver
   };
 };
 

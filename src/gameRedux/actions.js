@@ -56,6 +56,10 @@ const onSetGameIntro = bool => {
   return { type: actionTypes.SET_GAME_INTRO, bool };
 };
 
+const onSetGameLives = lives => {
+  return { type: actionTypes.SET_GAME_INTRO, lives };
+};
+
 export {
   setCurrentPage,
   setActive,
@@ -70,5 +74,6 @@ export {
   onCardFlip,
   onSaveCardsHtml,
   onSaveCardStyle,
-  onSetGameIntro
+  onSetGameIntro,
+  onSetGameLives
 };

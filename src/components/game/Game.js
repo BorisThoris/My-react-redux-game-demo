@@ -10,7 +10,7 @@ import bgnImage from "./gameBoardBackground.jpg";
 class Game extends Component {
   componentDidMount() {
     const { saveCards, setIntro } = this.props;
-    // const { onTest } = this.props;
+
     let cardCount = 12;
 
     let valuesCount = cardCount / 2;
@@ -20,10 +20,8 @@ class Game extends Component {
       vals.push({ number: i, count: 0 });
     }
 
-    // let cardArray = [":)"];
     let cards = [];
     for (let i = 0; i < cardCount; i++) {
-      //   cards = { key: i, id: i };
       cards.push({ key: i, id: i, value: "empty" });
     }
 
@@ -46,9 +44,9 @@ class Game extends Component {
   }
 
   onClick = id => {
-    const { flipCard, cards, disabled } = this.props;
+    const { flipCard, cards, disabled, gameIsOver } = this.props;
 
-    if (!disabled.includes(cards[id])) {
+    if (!disabled.includes(cards[id]) && !gameIsOver) {
       flipCard(id);
     }
     // console.log((e.target.childNodes[0].style.display = "inline-block"));
@@ -61,9 +59,12 @@ class Game extends Component {
       htmlSaved,
       cardStyles,
       activeCard,
-      cardTwo,
       disabled,
-      lastCard
+      lastCard,
+      setLives,
+      lives,
+      score,
+      gameIsOver
     } = this.props;
 
     let cardArray = [];
@@ -71,6 +72,10 @@ class Game extends Component {
 
     let bool = false;
     let cardDisabled = false;
+
+    if (lives === null && cards.length > 0) {
+      setLives(cards.length / 2);
+    }
 
     for (let i = 0; i < cards.length; i++) {
       if (i === activeCard || i === lastCard) {
@@ -103,10 +108,44 @@ class Game extends Component {
 
     if (!htmlSaved && styleArray.length > 0) saveCardsHtml(styleArray);
 
+    let gameOverText = (
+      <div
+        id="gameOver"
+        style={{
+          transition: "0.15s",
+          opacity: `${gameIsOver ? 100 : 0}`,
+          zIndex: `${gameIsOver ? 2 : -1000}`
+        }}
+      >
+        <div>Game Over!</div>
+        <div>
+          You scored
+          {` ${score}`} Points!
+        </div>
+      </div>
+    );
+
+    let informationDiv = (
+      <div
+        id="informationDiv"
+        style={{
+          transition: "0.5s",
+          opacity: `${gameIsOver ? 0 : 100}`
+        }}
+      >
+        <h4 id="scoreDiv">Your score: {score}</h4>
+        <h4 id="livesDiv">Your lives: {lives}</h4>
+      </div>
+    );
+
     return (
-      <div id="gameBoard" style={{ backgroundImage: `url(${bgnImage})` }}>
-        {/* <h4>Hello Rsdux</h4> */}
-        <div id="cardsDiv">{cardArray ? cardArray : null}</div>
+      <div id="appDiv">
+        {informationDiv}
+        {gameOverText}
+
+        <div id="gameBoard" style={{ backgroundImage: `url(${bgnImage})` }}>
+          <div id="cardsDiv">{cardArray ? cardArray : null}</div>
+        </div>
       </div>
     );
   }
@@ -120,7 +159,10 @@ const mapStateToProps = state => {
     activeCard: state.tempCurrentCard,
     cardTwo: state.cardTwo,
     disabled: state.disabled,
-    lastCard: state.lastCard
+    lastCard: state.lastCard,
+    lives: state.lives,
+    score: state.score,
+    gameIsOver: state.gameOver
   };
 };
 
@@ -136,6 +178,9 @@ const mapDispatchToProps = dispatch => {
     },
     flipCard: card => {
       dispatch({ type: actionTypes.ON_CARD_FLIP, card });
+    },
+    setLives: lives => {
+      dispatch({ type: actionTypes.SET_GAME_LIVES, lives });
     }
   };
 };
