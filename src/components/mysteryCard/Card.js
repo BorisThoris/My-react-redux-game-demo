@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./Card.css";
 import cardFront from "./cardFront.png";
 import cardBack from "./cardBack.png";
+import cardBack2 from "./cardBack2.png";
 import { blockStatement } from "@babel/types";
 
 class Card extends Component {
@@ -54,10 +55,10 @@ class Card extends Component {
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img
-              height={"100%"} //90
-              width={"100%"} //95
-              src={`${cardBack}`}
-              alt={"lol"}
+              height={"99%"} //90
+              width={"95%"} //95
+              src={`${cardBack2}`}
+              alt={cardBack}
             />
           </div>
           <div class="flip-card-back">
