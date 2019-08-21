@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.6cfd2be5.chunk.css",
+    "main.js": "/react-gh-pages/static/js/main.384003da.chunk.js",
+    "main.js.map": "/react-gh-pages/static/js/main.384003da.chunk.js.map",
+    "runtime~main.js": "/react-gh-pages/static/js/runtime~main.ac2d5040.js",
+    "runtime~main.js.map": "/react-gh-pages/static/js/runtime~main.ac2d5040.js.map",
+    "static/js/2.ea45d6c4.chunk.js": "/react-gh-pages/static/js/2.ea45d6c4.chunk.js",
+    "static/js/2.ea45d6c4.chunk.js.map": "/react-gh-pages/static/js/2.ea45d6c4.chunk.js.map",
+    "index.html": "/react-gh-pages/index.html",
+    "precache-manifest.f34e8549593b8d7a632fb92463e87756.js": "/react-gh-pages/precache-manifest.f34e8549593b8d7a632fb92463e87756.js",
+    "service-worker.js": "/react-gh-pages/service-worker.js",
+    "static/css/main.6cfd2be5.chunk.css.map": "/react-gh-pages/static/css/main.6cfd2be5.chunk.css.map",
+    "static/media/cardBack.png": "/react-gh-pages/static/media/cardBack.e237d232.png",
+    "static/media/cardFront.png": "/react-gh-pages/static/media/cardFront.34e9638c.png",
+    "static/media/gameBoardBackground.jpg": "/react-gh-pages/static/media/gameBoardBackground.2873992a.jpg"
+  }
+}
