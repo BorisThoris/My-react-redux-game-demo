@@ -64,7 +64,10 @@ class Game extends Component {
       setLives,
       lives,
       score,
-      gameIsOver
+      gameIsOver,
+      flippedCards,
+      unFlipCards,
+      cardsPressed
     } = this.props;
 
     let cardArray = [];
@@ -79,8 +82,12 @@ class Game extends Component {
 
     for (let i = 0; i < cards.length; i++) {
       if (i === activeCard || i === lastCard) {
-        console.log(i);
-        bool = true;
+        if (
+          flippedCards.includes(activeCard) ||
+          flippedCards.includes(lastCard)
+        ) {
+          bool = true;
+        }
       }
 
       if (disabled.includes(cards[i])) {
@@ -106,8 +113,17 @@ class Game extends Component {
       cardDisabled = false;
     }
 
+    if (activeCard && lastCard && cardsPressed === 2) {
+      // window.alert("hey");
+      setTimeout(() => {
+        let cardsToFlip = [activeCard, lastCard];
+        unFlipCards(cardsToFlip);
+      }, 700);
+    }
+
     if (!htmlSaved && styleArray.length > 0) saveCardsHtml(styleArray);
 
+    // TO BE MADE INTO COMPONENTS
     let gameOverText = (
       <div
         id="gameOver"
@@ -175,7 +191,9 @@ const mapStateToProps = state => {
     lastCard: state.lastCard,
     lives: state.lives,
     score: state.score,
-    gameIsOver: state.gameOver
+    gameIsOver: state.gameOver,
+    flippedCards: state.flippedCards,
+    cardsPressed: state.cardsPressed
   };
 };
 
@@ -194,6 +212,9 @@ const mapDispatchToProps = dispatch => {
     },
     setLives: lives => {
       dispatch({ type: actionTypes.SET_GAME_LIVES, lives });
+    },
+    unFlipCards: cards => {
+      dispatch({ type: actionTypes.UNFLIP_OLD_CARDS, cards });
     }
   };
 };

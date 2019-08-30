@@ -18,7 +18,8 @@ const initialState = {
   htmlSaved: false,
   matched: false,
   intro: false,
-  gameOver: false
+  gameOver: false,
+  flippedCards: []
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -36,6 +37,7 @@ const pageReducer = (state = initialState, action) => {
   let tempLives = state.lives;
   let tempScore = state.score;
   let tempGameOver = state.gameOver;
+  let tempFlippedCards = state.flippedCards;
 
   let tempArr = [];
   for (let i = 0; i < state.cards.length; i++) {
@@ -44,6 +46,8 @@ const pageReducer = (state = initialState, action) => {
 
   let newCards = tempArr;
   let newCardsHtml = state.cardsHtml;
+
+  console.log(action.type);
 
   switch (action.type) {
     /* important */
@@ -72,6 +76,21 @@ const pageReducer = (state = initialState, action) => {
       htmlSaved = true;
       break;
 
+    case actionTypes.UNFLIP_OLD_CARDS:
+      for (let card of action.cards) {
+        for (let index in tempFlippedCards) {
+          if (card === tempFlippedCards[index]) {
+            tempFlippedCards = tempFlippedCards.splice(index - 1, 1);
+          }
+        }
+      }
+
+      cardsPressed = 0;
+      tempLastCard = null;
+      currentCard = null;
+
+      break;
+
     case actionTypes.ON_CARD_FLIP:
       let tempCurrentCard = state.tempCurrentCard;
       let cards = state.cards;
@@ -91,33 +110,10 @@ const pageReducer = (state = initialState, action) => {
 
       if (cardsPressed < 2) {
         cardsPressed++;
+        console.log(action.card);
         currentCard = action.card;
         tempLastCard = state.tempCurrentCard;
-
-        if (matchBool) {
-          matched = true;
-          tempScore += 50;
-          tempLives++;
-
-          disabled.push(cards[tempCurrentCard], cards[action.card]);
-
-          currentCard = null;
-
-          if (cards.length === disabled.length) {
-            window.alert("SuCcEsS");
-          }
-          // break;
-        }
-
-        if (matched === true) {
-          newCardsHtml[action.card].style = { opacity: "0.3" };
-
-          if (newCardsHtml[state.tempCurrentCard]) {
-            newCardsHtml[state.tempCurrentCard].style = { opacity: "0.3" };
-          }
-
-          break;
-        }
+        tempFlippedCards.push(currentCard);
       }
 
       if (cardsPressed === 2) {
@@ -126,28 +122,39 @@ const pageReducer = (state = initialState, action) => {
           tempScore += 50;
           tempLives++;
 
+          cardsPressed = 0;
           disabled.push(cards[tempCurrentCard], cards[action.card]);
-
-          currentCard = null;
 
           if (cards.length === disabled.length) {
             window.alert("SuCcEsS");
           }
-          // break;
         } else {
-          cardsPressed = 0;
           currentCard = action.card;
-          console.log(currentCard);
-          console.log(tempLastCard);
+
+          console.log("i am pushing");
+
+          if (typeof currentCard !== undefined) {
+            tempFlippedCards.push(currentCard);
+          }
+
+          if (typeof tempLastCard !== undefined) {
+            tempFlippedCards.push(tempLastCard);
+          }
+
+          console.log(tempFlippedCards);
+
           if (currentCard !== tempLastCard) {
             tempLives--;
           }
-          tempLastCard = null;
+
+          // tempLastCard = null;
+          // currentCard = null;
 
           if (tempLives === 0) {
             tempGameOver = true;
-            // window.alert("Game Over, Sorry Bro :/");
           }
+
+          // cardsPressed = 0;
           break;
         }
       }
@@ -173,7 +180,8 @@ const pageReducer = (state = initialState, action) => {
     intro: tempintro,
     lives: tempLives,
     score: tempScore,
-    gameOver: tempGameOver
+    gameOver: tempGameOver,
+    flippedCards: tempFlippedCards
   };
 };
 

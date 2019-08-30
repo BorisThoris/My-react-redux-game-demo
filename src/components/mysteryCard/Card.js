@@ -53,6 +53,7 @@ class Card extends Component {
         style={cardStyle}
       >
         <div class="flip-card-inner">
+          <h4 class="flip-card-number">{this.props.value}</h4>
           <div class="flip-card-front">
             <img
               height={"99%"} //90

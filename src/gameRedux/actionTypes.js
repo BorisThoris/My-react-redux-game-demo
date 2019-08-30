@@ -18,3 +18,5 @@ export const SAVE_CARD_STYLE = "SAVE_CARD_STYLE";
 export const SET_GAME_INTRO = "ON_GAME_INTRO";
 export const SET_GAME_SCORE = "SET_GAME_SCORE";
 export const SET_GAME_LIVES = "SET_GAME_LIVES";
+
+export const UNFLIP_OLD_CARDS = "UNFLIP_OLD_CARDS";

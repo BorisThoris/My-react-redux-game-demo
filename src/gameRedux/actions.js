@@ -60,6 +60,10 @@ const onSetGameLives = lives => {
   return { type: actionTypes.SET_GAME_INTRO, lives };
 };
 
+const onUnflipOldCards = cards => {
+  return { type: actionTypes.UNFLIP_OLD_CARDS, cards };
+};
+
 export {
   setCurrentPage,
   setActive,
