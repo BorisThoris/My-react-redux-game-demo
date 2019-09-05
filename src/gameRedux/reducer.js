@@ -47,8 +47,6 @@ const pageReducer = (state = initialState, action) => {
   let newCards = tempArr;
   let newCardsHtml = state.cardsHtml;
 
-  console.log(action.type);
-
   switch (action.type) {
     /* important */
 
@@ -110,7 +108,7 @@ const pageReducer = (state = initialState, action) => {
 
       if (cardsPressed < 2) {
         cardsPressed++;
-        console.log(action.card);
+
         currentCard = action.card;
         tempLastCard = state.tempCurrentCard;
         tempFlippedCards.push(currentCard);
@@ -131,8 +129,6 @@ const pageReducer = (state = initialState, action) => {
         } else {
           currentCard = action.card;
 
-          console.log("i am pushing");
-
           if (typeof currentCard !== undefined) {
             tempFlippedCards.push(currentCard);
           }
@@ -140,8 +136,6 @@ const pageReducer = (state = initialState, action) => {
           if (typeof tempLastCard !== undefined) {
             tempFlippedCards.push(tempLastCard);
           }
-
-          console.log(tempFlippedCards);
 
           if (currentCard !== tempLastCard) {
             tempLives--;

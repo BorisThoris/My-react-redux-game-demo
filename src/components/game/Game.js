@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import * as actionTypes from "../../gameRedux/actionTypes";
 import { connect } from "react-redux";
 import Card from "../mysteryCard/Card";
+import GameOver from "../gameOver";
+import InformationDiv from "../informationDiv";
+import ReplayButton from "../replayButton";
+
 import "./game.css";
 import bgnImage from "./gameBoardBackground.jpg";
 // import { url } from "inspector";
@@ -63,8 +67,6 @@ class Game extends Component {
       lastCard,
       setLives,
       lives,
-      score,
-      gameIsOver,
       flippedCards,
       unFlipCards,
       cardsPressed
@@ -124,54 +126,12 @@ class Game extends Component {
     if (!htmlSaved && styleArray.length > 0) saveCardsHtml(styleArray);
 
     // TO BE MADE INTO COMPONENTS
-    let gameOverText = (
-      <div
-        id="gameOver"
-        style={{
-          transition: "0.15s",
-          opacity: `${gameIsOver ? 100 : 0}`,
-          zIndex: `${gameIsOver ? 2 : -1000}`
-        }}
-      >
-        <div>Game Over!</div>
-        <div>
-          You scored
-          {` ${score}`} Points!
-        </div>
-      </div>
-    );
-
-    let informationDiv = (
-      <div
-        id="informationDiv"
-        style={{
-          transition: "0.5s",
-          opacity: `${gameIsOver ? 0 : 100}`
-        }}
-      >
-        <h4 id="scoreDiv">Your score: {score}</h4>
-        <h4 id="livesDiv">Your lives: {lives}</h4>
-      </div>
-    );
-
-    let replayButton = (
-      <div
-        id="replayButton"
-        style={{
-          opacity: `${gameIsOver ? 100 : 0}`,
-          zIndex: `${gameIsOver ? 2 : -1000}`
-        }}
-      >
-        <div id="arrow">></div>
-      </div>
-    );
 
     return (
       <div id="appDiv">
-        {informationDiv}
-        {gameOverText}
-        {replayButton}
-
+        <InformationDiv />
+        <GameOver />
+        <ReplayButton />
         <div id="gameBoard" style={{ backgroundImage: `url(${bgnImage})` }}>
           <div id="cardsDiv">{cardArray ? cardArray : null}</div>
         </div>

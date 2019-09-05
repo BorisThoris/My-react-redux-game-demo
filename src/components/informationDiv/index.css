@@ -1,0 +1,28 @@
+#informationDiv {
+  width: 70%;
+  height: 7%;
+
+  background-color: rgba(245, 245, 245, 0.465);
+  border-style: solid;
+  margin: 10px auto;
+
+  position: fixed;
+  display: flex;
+  z-index: 1;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  -webkit-box-shadow: 37px 27px 12px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 37px 27px 12px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 37px 27px 12px -6px rgba(0, 0, 0, 0.75);
+}
+
+#scoreDiv {
+  font-size: 100%;
+}
+
+#livesDiv {
+  font-size: 100%;
+}

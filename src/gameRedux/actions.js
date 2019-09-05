@@ -64,6 +64,10 @@ const onUnflipOldCards = cards => {
   return { type: actionTypes.UNFLIP_OLD_CARDS, cards };
 };
 
+const onResetGame = () => {
+  return { type: actionTypes.onResetGame };
+};
+
 export {
   setCurrentPage,
   setActive,
@@ -79,5 +83,6 @@ export {
   onSaveCardsHtml,
   onSaveCardStyle,
   onSetGameIntro,
-  onSetGameLives
+  onSetGameLives,
+  onUnflipOldCards
 };

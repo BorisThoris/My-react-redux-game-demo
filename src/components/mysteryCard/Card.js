@@ -5,7 +5,6 @@ import "./Card.css";
 import cardFront from "./cardFront.png";
 import cardBack from "./cardBack.png";
 import cardBack2 from "./cardBack2.png";
-import { blockStatement } from "@babel/types";
 
 class Card extends Component {
   componentDidMount() {
@@ -53,7 +52,7 @@ class Card extends Component {
         style={cardStyle}
       >
         <div class="flip-card-inner">
-          <h4 class="flip-card-number">{this.props.value}</h4>
+          {/* <h4 class="flip-card-number">{this.props.value}</h4> */}
           <div class="flip-card-front">
             <img
               height={"99%"} //90
